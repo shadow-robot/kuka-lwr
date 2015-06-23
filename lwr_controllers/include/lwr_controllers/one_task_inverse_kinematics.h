@@ -4,7 +4,6 @@
 #include "PIDKinematicChainControllerBase.h"
 #include <lwr_controllers/MultiPriorityTask.h>
 #include <lwr_controllers/PoseRPY.h>
-#include <lwr_controllers/PIDgains.h>
 
 #include <std_msgs/Float64MultiArray.h>
 #include <visualization_msgs/Marker.h>
@@ -55,9 +54,9 @@ namespace lwr_controllers
 		} quat_curr_, quat_des_;
 
 		KDL::Vector v_temp_;
-		
+
 		int cmd_flag_;
-		
+
 		boost::scoped_ptr<KDL::ChainJntToJacSolver> jnt_to_jac_solver_;
 		boost::scoped_ptr<KDL::ChainDynParam> id_solver_;
 		boost::scoped_ptr<KDL::ChainFkSolverPos_recursive> fk_pos_solver_;

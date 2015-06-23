@@ -1,7 +1,7 @@
-/* Author: Carlos Rosales <cjrosales@gmail.com> 
-   Desc:   Implements a default KUKA LWR 4+ simulation interface that emulates 
+/* Author: Carlos Rosales <cjrosales@gmail.com>
+   Desc:   Implements a default KUKA LWR 4+ simulation interface that emulates
    the joint impedance control strategy using the gazebo_ros_control framework.
-   It is based on the default HW-I for any simulated robot in Gazebo from 
+   It is based on the default HW-I for any simulated robot in Gazebo from
    gazebo_ros_control package.
 */
 
@@ -228,9 +228,11 @@ bool LWRHWSimPlugin::parseTransmissionsFromURDF(const std::string& urdf_string)
   transmission_interface::TransmissionParser::parse(urdf_string, transmissions_);
 
   std::vector<transmission_interface::TransmissionInfo>::iterator it = transmissions_.begin();
-  for(; it != transmissions_.end(); ) 
+  for(; it != transmissions_.end(); )
   {
-    if (robot_namespace_.compare(it->robot_namespace_) != 0)
+    ROS_ERROR_STREAM(robot_namespace_ << " " <<it->name_);
+
+    if (false) //robot_namespace_.compare(it->robot_namespace_) != 0)
     {
       ROS_DEBUG_STREAM("lwr_hw_sim_plugin deleted transmission " << it->name_ << " because it is not in the same robotNamespace as this plugin. This might be normal in a multi-robot configuration though.");
       it = transmissions_.erase(it);
